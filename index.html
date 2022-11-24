@@ -26,24 +26,25 @@
                     <form name="login" class="formulario">
                         <div class="usuario">
                         <div class="usuario">Usuario
-                            <input name="usuario" type="text" class="usuarioInput" value=""/><br/> 
+                            <input name="usuario" type="text" class="usuarioInput"><br> 
                         </div>
                         <div class="password">Password
-                            <input name="password" type="password" class="passwordInput" value=""/><br/>
+                            <input name="password" type="password" class="passwordInput"><br>
                         </div>
                         <div>
-                            <input value="Entrar" onclick="Login()" type="button" class="textoEnviar"/> 
+                            <input value="Entrar" onclick="Login()" type="button" class="textoEnviar"> 
                             <div class="popup">
                                 <span class="popuptext" id="ventanaEmergente">Datos erróneos</span>
                             </div>
                         </div>
-                    </form> 
+                    </div>
+                </form> 
 
         </div>
 
     </div>
     
-    <script language="JavaScript"> 
+    <script> 
     function Login(){ 
     var done=0; 
     var usuario=document.login.usuario.value; 
@@ -61,7 +62,7 @@
     } 
     </script> 
 
-    <script language="JavaScript">
+    <script>
         function Error(){
             var popup = document.getElementById("ventanaEmergente");
             popup.classList.toggle("show");

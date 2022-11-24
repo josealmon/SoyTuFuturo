@@ -166,7 +166,7 @@
 
 .textoVivienda{
     color: white;
-    font: var(--font-family-inter);
+    font-family: var(--font-family-inter);
     text-decoration: none;
     font-size: 40px;
     text-align: center;

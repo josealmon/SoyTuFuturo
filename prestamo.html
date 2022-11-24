@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Hipoteca</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/estilos.css">
+</head>
+<body>
+        <script src="https://cdn.cai.tools.sap/webchat/webchat.js" channelId="134fa971-fd76-47aa-9e06-8cb495d8dac7" 
+        token="f3465e18bd6be2397d002976ec6ac3b2" id="cai-webchat"> </script>
+    
+        <div class="principal">
+    
+            <div class="header">
+                <div class="rectanguloHeader">
+                    <a class="menu" href="./intermedio.html"><h1 class="textoHeader">SOY TU FUTURO</h1></a>
+                </div>
+            </div>
+    
+            <br/>
+    
+            <div class="main2">
+    
+                <div class="formulario2">CALCULA UN PRÉSTAMO</div> <br/>
+
+                <h2 class="textoInformacion">Los intereses aplicados son fijos. Dichos intereses varían dependiendo de la entidad bancaria.</h2>
+            
+                <form >
+                    <div>
+                        <div class="datos">Dinero a solicitar:</div> <br/>
+                        <input class="datosSlider" type="range" id="dinero" min="30000" max="1000000" value="80000" name="dinero" onchange="test()"/> <br>
+                        <input class="datos" id="mostrarDinero" type="number" onchange="cambio1()">
+                    </div> <br/>
+                    <div>
+                        <div class="datos">Años:</div> <br/>
+                        <input class="datosSlider" type="range" id="anos" min="5" max="30" value="5" name="anos" onchange="test()"/> <br>
+                        <input class="datos" id="mostrarAnos" type="number" onchange="cambio2()">
+                        <!--<input class="datos" type="text" name="anos" maxlength=2 />-->
+                    </div> <br/>
+                <!--
+                    <fieldset>
+                        <legend class="legendUno">Uso de la vivienda</legend>
+                        <label class="labelUno">
+                            <input class="radioUno" type="radio" name="uso" value="habitual">Vivienda habitual
+                        </label>
+                        <label class="labelUno">
+                            <input type="radio" name="uso" value="segunda">Segunda vivienda
+                        </label>
+                    </fieldset> <br/>
+                -->
+                    <div>
+                        <input class="datos" type="button" value="Calcular" onclick="calcular()" />
+                        <img src="./imagenes/micro.png" class="imagenMicro" alt="imagen" style="border: 3px solid; color: #009ED6" onclick="hablar()">
+                    </div>
+    
+                </form>
+        
+                <br/>
+         
+                <div class="resultados" id="resultado"></div>
+
+                <div class="datos"></div> <br/>
+                        <p class="datos" id="cuota"></p>
+                </div>
+    
+            </div>
+    
+        </div>
+    
+        <script>
+            
+            var sl1 = document.getElementById("dinero");
+            var p1 = document.getElementById("mostrarDinero");
+    
+            var sl2 = document.getElementById("anos");
+            var p2 = document.getElementById("mostrarAnos");
+            
+            p1.value = sl1.value;
+            p2.value = sl2.value;
+    
+            function test()
+            {
+                p1.value=sl1.value; 
+                p2.value=sl2.value;
+            }
+
+            function cambio1(){
+
+                if(p1.value < 30000){
+                    p1.value = 30000;
+                    sl1.value = p1.value;
+                }
+
+                else if(p1.value > 1000000){
+                    p1.value = 1000000;
+                    sl1.value = p1.value;
+                }
+
+                else{
+                    sl1.value = p1.value;
+                }
+            }
+
+            function cambio2(){
+
+                if(p2.value < 5){
+                    p2.value = 5;
+                    sl2.value = p2.value;
+                }
+
+                else if(p2.value > 30){
+                    p2.value = 30;
+                    sl2.value = p2.value;
+                }
+
+                else{
+                    sl2.value = p2.value;
+                }
+                   
+            }
+    
+            
+    
+        </script>
+
+        <script>
+            function calcular() {
+                let dinero = document.getElementById("dinero").value;
+                let interes= 1.5;
+                let ano = document.getElementById("anos").value;
+
+                //Calculos
+                var cuota = (dinero * interes) / (1 - Math.pow( (1+interes) , (-ano) ) );
+                cuota= (Math.round(cuota*100) /100).toFixed(2);
+                
+                if (isNaN(cuota) || cuota == "Infinity" || cuota == 0)
+                {
+                    document.getElementById("cuota").innerHTML = "Llene todos los datos.";
+                }
+                else
+                {
+                    document.getElementById("cuota").innerHTML = "A pagar: " + cuota + "€";
+                }
+            }
+        </script>
+
+        <script>
+            let sr = new webkitSpeechRecognition();
+
+        function hablar() {
+            sr.start();
+
+            sr.onresult = resultado => {
+                let indiceUltimoElemento = resultado.results.length - 1;
+                let textoEscuchado = resultado.results[indiceUltimoElemento][0].transcript;
+                document.querySelector('textarea').value = textoEscuchado;
+            }
+        }
+        </script>
+    
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Hipoteca</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/estilos.css">
+</head>
+<body>
+        <script src="https://cdn.cai.tools.sap/webchat/webchat.js" channelId="134fa971-fd76-47aa-9e06-8cb495d8dac7" 
+        token="f3465e18bd6be2397d002976ec6ac3b2" id="cai-webchat"> </script>
+    
+        <div class="principal">
+    
+            <div class="header">
+                <div class="rectanguloHeader">
+                    <a class="menu" href="./intermedio.html"><h1 class="textoHeader">SOY TU FUTURO</h1></a>
+                </div>
+            </div>
+    
+            <br/>
+    
+            <div class="main2">
+    
+                <div class="formulario2">REALIZAR UNA DONACIÓN</div> <br/>
+            
+                <form >
+                    <div>
+                        <div class="datos">Nombre y apellidos:</div>
+                        <input class="datos" type="text" style="border: 3px solid; color: black"/>
+
+                        <div class="datos">Email:</div>
+                        <input class="datos" type="text" style="border: 3px solid; color: black"/>
+
+                        <div class="datos">Cantidad a donar:</div> <br/>
+                        <input class="datos" type="range" min="1" max="9999" id="dinero" name="dinero" onchange="test()"/>
+                        <p class="datos" id="mostrarDinero"></p>
+                    </div> <br/>
+                        <!--<input class="datos" type="text" name="anos" maxlength=2 />-->
+                    </div> <br/>
+                <!--
+                    <fieldset>
+                        <legend class="legendUno">Uso de la vivienda</legend>
+                        <label class="labelUno">
+                            <input class="radioUno" type="radio" name="uso" value="habitual">Vivienda habitual
+                        </label>
+                        <label class="labelUno">
+                            <input type="radio" name="uso" value="segunda">Segunda vivienda
+                        </label>
+                    </fieldset> <br/>
+                -->
+                    <div>
+                        <input class="datosBoton" type="button" value="Donar" onclick="donar()" />
+                        <img src="./imagenes/micro.png" class="imagenMicro" alt="imagen" style="border: 3px solid; color: #009ED6" onclick="hablar()">
+                    </div> <br>
+
+                    <p class="datosTabla2" id="mostrarDonacion"></p>
+    
+                </form>
+    
+            </div>
+    
+        </div>
+    
+        <script>
+            var sl1 = document.getElementById("dinero");
+            var p1 = document.getElementById("mostrarDinero");
+
+            var p2 = document.getElementById("mostrarDonacion");
+    
+            p1.innerHTML = sl1.value;
+            var prueba = 0;
+            
+
+            function test(){
+                p1.innerHTML=sl1.value;
+            }
+
+            function donar() {
+                Object.defineProperty(globalThis, 'buffer', {value: prueba + sl1.value, configurable: true, });
+                p2.innerHTML = "Nos pondremos en contacto con usted para donar " + buffer + "€ a África." 
+                console.log(delete buffer);
+                var mostrar = document.getElementById("mostrarDonacion"); 
+                mostrar.setAttribute("style", "visibility: visible;");
+            }
+            
+
+        </script>
+
+        <script>
+             let sr = new webkitSpeechRecognition();
+
+            function hablar() {
+                sr.start();
+
+                sr.onresult = resultado => {
+                    let indiceUltimoElemento = resultado.results.length - 1;
+                    let textoEscuchado = resultado.results[indiceUltimoElemento][0].transcript;
+                    document.querySelector('textarea').value = textoEscuchado;
+                }
+            }
+        </script>
+    
+</body>
+</html>

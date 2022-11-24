@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/estilos.css"> 
+</head>
+<body>
+
+    <div class="principal">
+
+        <div class="header">
+            <div class="rectanguloHeader">
+                <h1 class="textoHeader">SOY TU FUTURO</h1>
+            </div>
+        </div>
+
+        <div class="main">
+            <img src="./imagenes/index.jpeg" class="imagen" alt="imagen" style="border: 3px solid; color: #009ED6">
+
+                <div class="inicioSesion">INICIO SESIÓN</div>
+
+                    <form name="login" class="formulario">
+                        <div class="usuario">
+                        <div class="usuario">Usuario
+                            <input name="usuario" type="text" class="usuarioInput" value=""/><br/> 
+                        </div>
+                        <div class="password">Password
+                            <input name="password" type="password" class="passwordInput" value=""/><br/>
+                        </div>
+                        <div>
+                            <input value="Entrar" onclick="Login()" type="button" class="textoEnviar"/> 
+                            <div class="popup">
+                                <span class="popuptext" id="ventanaEmergente">Datos erróneos</span>
+                            </div>
+                        </div>
+                    </form> 
+
+        </div>
+
+    </div>
+    
+    <script language="JavaScript"> 
+    function Login(){ 
+    var done=0; 
+    var usuario=document.login.usuario.value; 
+    var password=document.login.password.value; 
+    
+    if (usuario=="Andres" && password=="Andres") { 
+        window.location="intermedio.html"; 
+    } 
+    if (usuario=="Jorge" && password=="Jorge") { 
+        window.location="intermedio.html"; 
+    } 
+    else{ 
+        Error();
+    } 
+    } 
+    </script> 
+
+    <script language="JavaScript">
+        function Error(){
+            var popup = document.getElementById("ventanaEmergente");
+            popup.classList.toggle("show");
+        }
+    </script>
+    
+</body>
+</html>

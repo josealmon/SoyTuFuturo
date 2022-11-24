@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Hipoteca</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/estilos.css">
+</head>
+<body>
+        <script src="https://cdn.cai.tools.sap/webchat/webchat.js" channelId="134fa971-fd76-47aa-9e06-8cb495d8dac7" 
+        token="f3465e18bd6be2397d002976ec6ac3b2" id="cai-webchat"> </script>
+    
+        <div class="principal">
+    
+            <div class="header">
+                <div class="rectanguloHeader">
+                    <a class="menu" href="./intermedio.html"><h1 class="textoHeader">SOY TU FUTURO</h1></a>
+                </div>
+            </div>
+    
+            <br/>
+    
+            <div class="main2">
+    
+                <div class="formulario2">CALCULA UN PRÉSTAMO INDIVIDUAL</div> <br/>
+
+                 <h2 class="textoInformacion">Los intereses aplicados son fijos. Dichos intereses varían dependiendo de la entidad bancaria.</h2>
+            
+                <form >
+                    <div>
+                        <div class="datos">Precio del préstamo:</div> <br/>
+                        <input class="datosSlider" type="range" min="30000" max="1000000" value="1000000" id="precio" name="precio" onchange="updateSlider()"/> <br>
+                        <input class="datos" type="number" id="mostrarPrecio" onchange="cambio1()"/>
+                    </div> <br/>
+                    <div>
+                        <div class="datos">Dinero necesario:</div> <br/>
+                        <input class="datosSlider" type="range" id="dinero" min="24000" max="800000" value="80000" name="dinero" onchange="updateSlider2()"/> <br>
+                        <input class="datos" type="number" id="mostrarDinero" onchange="cambio2()"/>
+                    </div> <br/>
+                    <div>
+                        <div class="datos">Años:</div> <br/>
+                        <input class="datosSlider" type="range" id="anos" min="5" max="30" value="5" name="anos" onchange="updateSlider3()"/> <br>
+                        <input class="datos" type="number" id="mostrarAnos" onchange="cambio3()"/>
+                        <!--<input class="datos" type="text" name="anos" maxlength=2 />-->
+                    </div> <br/>
+                <!--
+                    <fieldset>
+                        <legend class="legendUno">Uso de la vivienda</legend>
+                        <label class="labelUno">
+                            <input class="radioUno" type="radio" name="uso" value="habitual">Vivienda habitual
+                        </label>
+                        <label class="labelUno">
+                            <input type="radio" name="uso" value="segunda">Segunda vivienda
+                        </label>
+                    </fieldset> <br/>
+                -->
+                    <div>
+                        <input class="datos" type="button" value="Calcular" onclick="calcular()" />
+                        <img src="./imagenes/micro.png" class="imagenMicro" alt="imagen" style="border: 3px solid; color: #009ED6" onclick="hablar()">
+                    </div>
+    
+                </form>
+        
+                <br/>
+         
+                <div class="resultados" id="resultado"></div>
+    
+            </div>
+    
+        </div>
+    
+        <script>
+            var sl1 = document.getElementById("precio");
+            var p1 = document.getElementById("mostrarPrecio");
+            
+            var sl2 = document.getElementById("dinero");
+            var p2 = document.getElementById("mostrarDinero");
+    
+            var sl3= document.getElementById("anos");
+            var p3= document.getElementById("mostrarAnos");
+            
+    
+            p1.value = sl1.value;
+            sl2.value = sl1.value*0.80;
+            p2.value = sl2.value;
+    
+            p3.value = sl3.value;
+    
+            function updateSlider()
+            {
+                p1.value = sl1.value;
+                p2.value=sl2.value;
+                sl2.value = p1.value*0.80;
+                p2.value = sl1.value*0.80;
+            }
+
+            function updateSlider2()
+            {
+                p2.value=sl2.value;
+            }
+
+            function updateSlider3()
+            {
+                p3.value = sl3.value;
+            }
+    
+            function cambio1(){
+                if(p1.value < 30000){
+                    p1.value = 30000;
+                    sl1.value = p1.value;
+                    sl2.value = p1.value * 0.80;
+                    p2.value = p1.value * 0.80;
+                }
+
+                else if(p1.value > 1000000){
+                    p1.value = 1000000;
+                    sl1.value = p1.value;
+                    sl2.value = p1.value * 0.80;
+                    p2.value = p1.value * 0.80;
+                }
+
+                else{
+                    sl1.value = p1.value;
+                    sl2.value = p1.value * 0.80;
+                    p2.value = p1.value * 0.80;
+                }
+            }
+
+            function cambio2(){
+                if(p2.value < 24000){
+                    p2.value = 24000;
+                    sl2.value = p2.value;
+                }
+
+                else if(p2.value > 800000){
+                    p2.value = 800000;
+                    sl2.value = p2.value;
+                }
+
+                else{
+                    sl2.value = p2.value;
+                }
+            }
+
+            function cambio3(){
+                if(p3.value < 5){
+                    p3.value = 5;
+                    sl3.value = p3.value;
+                }
+
+                else if(p3.value > 30){
+                    p3.value = 30;
+                    sl3.value = p3.value;
+                }
+
+                else{
+                    sl3.value = p3.value;
+                }
+            }
+    
+        </script>
+
+        <script>
+        function calcular() {
+            let deuda = parseFloat(document.querySelector("input[name = precio]").value);
+            let anos = parseInt(document.querySelector("input[name = anos]").value);
+            let interes = 3.9;
+            let intereses = interes;
+            const resultado=document.getElementById("resultado");
+         
+            // Calculos
+            interes=(interes/100)/12;
+            const m=(deuda*interes*(Math.pow((1 + interes),(anos * 12))))/((Math.pow((1 + interes),(anos * 12))) - 1);
+
+            resultado.innerHTML="<div class='datosTabla'>Capital Inicial: "+ deuda.toLocaleString("es-ES", {minimumFractionDigits: 2, maximumFractionDigits:2})+" € \
+                <br> <br>Cuota a pagar mensualmente: "+ m.toLocaleString("es-ES", {minimumFractionDigits: 2, maximumFractionDigits:2})+" €</div> <br>";
+            }
+        </script>
+
+        <script>
+            let sr = new webkitSpeechRecognition();
+
+        function hablar() {
+            sr.start();
+
+            sr.onresult = resultado => {
+                let indiceUltimoElemento = resultado.results.length - 1;
+                let textoEscuchado = resultado.results[indiceUltimoElemento][0].transcript;
+                document.querySelector('textarea').value = textoEscuchado;
+            }
+        }
+        </script>
+    
+</body>
+</html>
